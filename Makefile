@@ -13,7 +13,15 @@ postgres:
 createdb:
 	docker exec -it ${DB_DOCKER_CONTAINER} createdb --username=fady --owner=fady cfedb
 
+migrate_up:
+	docker run -i -v "H:\1- freelancing path\Courses\golang stack\projects\cfe_api\migrations:/migrations" --network host migrate/migrate -path=/migrations/ -database "postgresql://fady:fady@127.0.0.1/cfedb?sslmode=disable" up
+
+migrate_down:
+	docker run -i -v "H:\1- freelancing path\Courses\golang stack\projects\cfe_api\migrations:/migrations" --network host migrate/migrate -path=/migrations/ -database "postgresql://fady:fady@127.0.0.1/cfedb?sslmode=disable" down
+
+
 run:
 	go run cmd/server/main.go
 
 
+# how to handle the dirty schema_migrations table >    UPDATE schema_migrations SET dirty = false WHERE version = 1;

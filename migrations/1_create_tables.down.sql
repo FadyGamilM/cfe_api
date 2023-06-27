@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS coffes;
+DROP TABLE IF EXISTS coffees;
