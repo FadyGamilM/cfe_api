@@ -24,10 +24,13 @@ type Application struct {
 }
 
 func (app *Application) Serve() error {
+
 	// instantiate a http server instance
 	server := &http.Server{
 		Addr: fmt.Sprintf(":%s", server_port),
 	}
+
+	fmt.Printf("server is running up on port %v \n", app.Config.PORT)
 
 	// return a running server instance or an error
 	return server.ListenAndServe()
@@ -35,7 +38,9 @@ func (app *Application) Serve() error {
 
 func main() {
 	server_configs := AppConfig{PORT: server_port}
+
 	dsn := os.Getenv("DSN")
+	fmt.Println("THE DSN IS -> ", dsn)
 
 	dbConnPool, dbConnErr := db.ConnectToPostgresInstance(dsn)
 	if dbConnErr != nil {
@@ -47,7 +52,10 @@ func main() {
 	// create instance from the Application and start the server
 	app := &Application{Config: server_configs}
 	serverErr := app.Serve()
+	fmt.Println("here")
 	if serverErr != nil {
 		log.Fatalf("cannot start the server \n ERROR ➜ %v \n", serverErr)
+	} else {
+		log.Printf("server is up and running on port %v \n", app.Config.PORT)
 	}
 }
