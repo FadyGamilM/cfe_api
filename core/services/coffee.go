@@ -8,11 +8,11 @@ import (
 )
 
 // i created this embedding type around my domain type so i can achieve the architecture separation because in Go i can't create a method on a non-local type which is a type declared in another package such as the domain.Coffee
-type coffee struct {
+type Coffee struct {
 	domain.Coffee
 }
 
-func (c *coffee) GetAllCoffees() ([]domain.Coffee, error) {
+func (c *Coffee) GetAllCoffees() ([]domain.Coffee, error) {
 	/*
 		1. define a context with time out = 3 seconds to limit my database operations
 		2. call cancel on this context to release all used resources for this context
@@ -32,10 +32,12 @@ func (c *coffee) GetAllCoffees() ([]domain.Coffee, error) {
 		log.Fatalf("cannot execute the GetAllCoffees query, \n \t ERROR : %v \n", err)
 	}
 
+	defer rows.Close()
+
 	var coffees []domain.Coffee
 
 	for rows.Next() {
-		var c coffee
+		var c Coffee
 		err := rows.Scan(
 			&c.Coffee.ID,
 			&c.Coffee.Name,

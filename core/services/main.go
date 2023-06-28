@@ -3,6 +3,8 @@ package services
 import (
 	"database/sql"
 	"time"
+
+	"github.com/FadyGamilM/cfe_api/core/domain"
 )
 
 // limit all db operations for 3 seconds only
@@ -12,5 +14,5 @@ const dbTimeOut = 3 * time.Second
 var db *sql.DB
 
 type Models struct {
-	coffee coffee
+	coffee domain.Coffee
 }
