@@ -2,7 +2,7 @@ package domain
 
 import "time"
 
-type coffee struct {
+type Coffee struct {
 	ID         string    `json:"id"`
 	Name       string    `json:"name"`
 	Region     string    `json:"region"`
