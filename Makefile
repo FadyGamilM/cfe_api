@@ -1,3 +1,7 @@
+# Data source Naming "the connection string"
+DSN="host=localhost port=5432 user=fady password=fady dbname=cfedb sslmode=disable timezone=UTC connect_timeout=5"
+PORT=8080
+
 # the container for the database
 DB_DOCKER_CONTAINER=cfe_db
 
@@ -23,5 +27,9 @@ migrate_down:
 run:
 	go run cmd/server/main.go
 
+build:
+	@echo "Building the binary of the backend ... "
+	go build -o ${BINARY_NAME} cmd/server/*.go
+	@echo "The binary are ready !"
 
-# how to handle the dirty schema_migrations table >    UPDATE schema_migrations SET dirty = false WHERE version = 1;
+# this is how to handle the dirty schema_migrations table >    UPDATE schema_migrations SET dirty = false WHERE version = 1;
