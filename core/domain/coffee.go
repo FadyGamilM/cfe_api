@@ -9,6 +9,7 @@ type Coffee struct {
 	RoastLevel string    `json:"roast_level"`
 	Price      float64   `json:"price"`
 	GrindUnit  string    `json:"grind_unit"`
+	Image      string    `json:"image"`
 	CreatedAt  time.Time `json:"created_at"`
 	UpdatedAt  time.Time `json:"updated_at"`
 }

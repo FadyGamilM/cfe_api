@@ -45,6 +45,7 @@ func (c *Coffee) GetAllCoffees() ([]domain.Coffee, error) {
 			&c.Coffee.RoastLevel,
 			&c.Coffee.Price,
 			&c.Coffee.GrindUnit,
+			&c.Coffee.Image,
 			&c.Coffee.CreatedAt,
 			&c.Coffee.UpdatedAt,
 		)
